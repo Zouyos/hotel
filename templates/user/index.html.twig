@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index
+{% endblock %}
+
+{% block h1 %}
+  Gestion des membres
+{% endblock %}
+
+{% block body %}
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Pseudal</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Genre</th>
+				<th>Roles</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.id }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.pseudo }}</td>
+          <td>{{ user.nom }}</td>
+					<td>{{ user.prenom }}</td>
+          <td>{{ user.sexe }}</td>
+					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+					<td>
+						<a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+						<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_user_new') }}">Create new</a>
+{% endblock %}
