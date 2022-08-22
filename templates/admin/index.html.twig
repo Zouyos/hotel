@@ -1,9 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}} | Dashboard{% endblock %}
+{% block title %}
+	{{parent()}}
+	| Dashboard
+{% endblock %}
 
-{% block h1 %}{{parent()}} | Dashboard{% endblock %}
+{% block h1 %}
+	{{parent()}}
+	| Dashboard
+{% endblock %}
 
 {% block body %}
-<a href="{{path('app_user_index')}}" class="btn btn-lg btn-secondary">Gestion des membres</a>
+	<div class="container d-flex flex-wrap justify-content-around">
+		<a href="{{path('app_user_index')}}" class="btn btn-lg btn-secondary">Gestion des membres</a>
+    <a href="{{path('app_chambre_index')}}" class="btn btn-lg btn-primary">Gestion des chambres</a>
+	</div>
+
 {% endblock %}

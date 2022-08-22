@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chambre index
+{% endblock %}
+
+{% block body %}
+	<h1>Chambre index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Titre</th>
+				<th>Description Courte</th>
+				<th>Prix</th>
+				<th>CreatedAt</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for chambre in chambres %}
+				<tr>
+					<td>{{ chambre.id }}</td>
+					<td>{{ chambre.Titre }}</td>
+					<td>{{ chambre.descriptionCourte }}</td>
+					<td>{{ chambre.prix }}</td>
+					<td>{{ chambre.createdAt ? chambre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('app_chambre_show', {'id': chambre.id}) }}">show</a>
+						<a href="{{ path('app_chambre_edit', {'id': chambre.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_chambre_new') }}">Create new</a>
+{% endblock %}

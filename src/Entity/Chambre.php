@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ChambreRepository::class)]
 class Chambre
@@ -17,7 +18,8 @@ class Chambre
   private ?int $id = null;
 
   #[ORM\Column(length: 255, nullable: true)]
-  private ?string $Titre = null;
+  #[Assert\NotBlank]
+  private ?string $titre = null;
 
   #[ORM\Column(length: 255, nullable: true)]
   private ?string $descriptionCourte = null;
@@ -29,6 +31,7 @@ class Chambre
   private ?string $photo = null;
 
   #[ORM\Column(nullable: true)]
+  #[Assert\NotNull(message: 'Le prix doit être supérieur à 0.')]
   private ?float $prix = null;
 
   #[ORM\Column(nullable: true)]
@@ -49,12 +52,12 @@ class Chambre
 
   public function getTitre(): ?string
   {
-    return $this->Titre;
+    return $this->titre;
   }
 
-  public function setTitre(?string $Titre): self
+  public function setTitre(?string $titre): self
   {
-    $this->Titre = $Titre;
+    $this->titre = $titre;
 
     return $this;
   }
