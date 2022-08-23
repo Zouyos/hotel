@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block body %}
+
+	{% include "inc/_flash.html.twig" %}
+
 	<div class="container d-flex my-4 justify-content-center">
 		{% for chambre in chambres %}
 			<div class="card mx-2" style="width: 36rem;">
@@ -28,11 +31,10 @@
 	</div>
 
 	<div id="carouselHome" class="carousel carousel-dark slide my-5" data-bs-ride="false">
-		<div
-			class="carousel-indicators">
+		<div class="carousel-indicators">
 			{% for chambre in chambres %}
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{chambre.id - 1}}" class="active" aria-current="true" aria-label="Slide {{chambre.id}}"></button>
-			{# <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button> #}
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{chambre.id - 1}}" class="active" aria-current="true" aria-label="Slide {{chambre.id}}"></button>
+				{# <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button> #}
 			{% endfor %}
 		</div>
 		<div class="carousel-inner">

@@ -21,7 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   private ?int $id = null;
 
   #[ORM\Column(length: 180, unique: true)]
-  #[Assert\NotBlank(message: 'Le champ {{ value }} ne peut pas être vide')]
+  #[Assert\NotBlank(message: 'Le champ {{ label }} ne peut pas être vide')]
   private ?string $email = null;
 
   #[ORM\Column]
@@ -31,7 +31,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    * @var string The hashed password
    */
   #[ORM\Column]
-  #[Assert\NotBlank]
   private ?string $password = null;
 
   #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class)]
@@ -49,7 +48,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   private ?string $sexe = null;
 
   #[ORM\Column(nullable: true)]
-  #[Assert\NotBlank]
   private ?\DateTimeImmutable $createdAt = null;
 
   #[ORM\Column(length: 255, nullable: true)]
