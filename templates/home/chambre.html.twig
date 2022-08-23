@@ -1,15 +1,21 @@
 {% extends "base.html.twig" %}
 
-{% block h1 %}Fiche chambre :
+{% block h1 %}
 	{{chambre.titre}}
 {% endblock %}
 
 {% block body %}
-	<div class="container border rounded p-2">
+	<div class="container border rounded m-auto">
 		<div>
-			<img src="{{chambre.photo}}" alt="Chambre">
+			{% if chambre.photo %}
+				<img src="{{chambre.photo}}" alt="Chambre" class="w-100">
+			{% else %}
+				<img src="{{asset('images/default.jpg')}}" alt="Chambre" class="w-100">
+			{% endif %}
 		</div>
-    <p>{{chambre.descriptionLongue}}</p>
-    <h5>Prix à la nuit : {{chambre.prix}} €</h5>
+		<p class="my-2">{{chambre.descriptionLongue}}</p>
+		<h5 class="my-2">Prix à la nuit :
+			{{chambre.prix}}
+			€</h5>
 	</div>
 {% endblock %}

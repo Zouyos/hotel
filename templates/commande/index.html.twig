@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande index
+{% endblock %}
+
+{% block body %}
+	<h1>Commande index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Début de réservation</th>
+				<th>Fin de réservation</th>
+        <th>Client (email)</th>
+        <th>Chambre</th>
+				<th>Montant total</th>
+				<th>Date de création</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for commande in commandes %}
+				<tr>
+					<td>{{ commande.id }}</td>
+					<td>{{ commande.startAt ? commande.startAt|date('d/m/Y H:i:s') : '' }}</td>
+					<td>{{ commande.endAt ? commande.endAt|date('d/m/Y H:i:s') : '' }}</td>
+          <td>{{ commande.user.email }}</td>
+          <td>{{ commande.chambre.titre }}</td>
+					<td>{{ commande.prix }} €</td>
+					<td>{{ commande.createdAt ? commande.createdAt|date('d/m/Y H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('app_commande_show', {'id': commande.id}) }}">Show</a>
+						<a href="{{ path('app_commande_edit', {'id': commande.id}) }}">Edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">No records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_commande_new') }}">Create new</a>
+{% endblock %}

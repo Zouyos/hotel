@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande
+{% endblock %}
+
+{% block body %}
+	<h1>Commande</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ commande.id }}</td>
+			</tr>
+			<tr>
+				<th>Début de réservation</th>
+				<td>{{ commande.startAt ? commande.startAt|date('d/m/Y H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Fin de réservation</th>
+				<td>{{ commande.endAt ? commande.endAt|date('d/m/Y H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Chambre</th>
+				<td>{{ commande.chambre.titre }}</td>
+			</tr>
+			<tr>
+				<th>Client (email)</th>
+				<td>{{ commande.user.email }}</td>
+			</tr>
+			<th>Prix</th>
+			<td>{{ commande.prix }}
+				€</td>
+		</tbody>
+	</tr>
+	<tr>
+		<th>CreatedAt</th>
+		<td>{{ commande.createdAt ? commande.createdAt|date('d/m/Y H:i:s') : '' }}</td>
+	</tr>
+</tbody>
+</table>
+<p><a href="{{ path('app_commande_index') }}">Back to list</a></p>
+<p><a href="{{ path('app_commande_edit', {'id': commande.id}) }}">Edit</a></p>
+{{ include('commande/_delete_form.html.twig') }}
+{% endblock %}

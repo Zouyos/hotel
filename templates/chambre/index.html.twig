@@ -24,7 +24,7 @@
 					<td>{{ chambre.Titre }}</td>
 					<td>{{ chambre.descriptionCourte }}</td>
 					<td>{{ chambre.prix }}</td>
-					<td>{{ chambre.createdAt ? chambre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ chambre.createdAt ? chambre.createdAt|date('d/m/Y H:i:s') : '' }}</td>
 					<td>
 						<a href="{{ path('app_chambre_show', {'id': chambre.id}) }}">show</a>
 						<a href="{{ path('app_chambre_edit', {'id': chambre.id}) }}">edit</a>
