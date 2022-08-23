@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container border rounded">
+	<div class="container border rounded p-2">
 		<div>
 			<img src="{{chambre.photo}}" alt="Chambre">
 		</div>
     <p>{{chambre.descriptionLongue}}</p>
-    <h5>{{chambre.prix}}</h5>
+    <h5>Prix à la nuit : {{chambre.prix}} €</h5>
 	</div>
 {% endblock %}
