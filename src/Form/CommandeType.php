@@ -33,7 +33,7 @@ class CommandeType extends AbstractType
         "hours" => $this->heures(),
         "minutes" => [0, 15, 30, 45],
         "placeholder" => false,
-        "label" => "Début de réservation"
+        "label" => "Début"
       ])
       ->add('endAt', DateTimeType::class, [
         "required" => false,
@@ -41,7 +41,7 @@ class CommandeType extends AbstractType
         "hours" => $this->heures(),
         "minutes" => [0, 15, 30, 45],
         "placeholder" => false,
-        "label" => "Fin de réservation"
+        "label" => "Fin"
       ]);
 
     if ($options['relations']) {

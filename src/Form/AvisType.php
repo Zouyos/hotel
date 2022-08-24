@@ -15,9 +15,9 @@ class AvisType extends AbstractType
     $builder
       ->add('message', TextareaType::class, [
         'required' => false,
-        'label' => false,
+        'label' => 'Laisser un avis',
         'attr' => [
-          'placeholder' => 'Laissez un avis...',
+          'placeholder' => 'Votre message...',
           'rows' => 6
         ]
       ]);

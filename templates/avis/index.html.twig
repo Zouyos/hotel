@@ -10,29 +10,35 @@
 
 	{% include "inc/_flash.html.twig" %}
 
-	<div class="card col-md-12 m-auto p-3">
-		{% for avis in avis_ %}
-			<div class="border p-3 my-1 rounded">
-				<h5>{{ avis.user.prenom }}</h5>
-				<p>{{ avis.createdAt | date('d/m/Y')}}</p>
-				<p class="fst-italic fw-strong text-secondary">{{ avis.message }}</p>
-			</div>
-			{% if is_granted('ROLE_ADMIN') %}
-				{{ include('avis/_delete_form.html.twig') }}
-			{% endif %}
-		{% endfor %}
-
-		{% if app.user %}
-			<div class="my-1">
-				{{ form_start(form) }}
-
-				{{ form_row(form.message) }}
-
-				<input type="submit" value="Envoyer" class="btn btn-success col-12 my-3">
-				{{ form_end(form) }}
-			{% else %}
-				<p class="my-3 mx-1">Veuillez-vous connecter pour déposer un avis.</p>
-			{% endif %}
+	{% if app.user %}
+		<div class="my-1">
+			{{ form_start(form) }}
+			{{ form_row(form.message) }}
+			<input type="submit" value="Envoyer" class="btn btn-warning col-12 my-3">
+			{{ form_end(form) }}
 		</div>
+	{% else %}
+		<div class="my-1">
+			<p class="my-3 mx-1">Veuillez-vous connecter pour déposer un avis.</p>
+		</div>
+	{% endif %}
+
+	{% if avis_ %}
+		<hr class="my-3">
+		<h3 class="mb-2 text-center text-secondary">Ils parlent de nous</h3>
+		<div class="card col-md-12 m-auto p-3 my-3">
+			{% for avis in avis_ %}
+				<div class="border p-3 my-1 rounded">
+					<h5 class="text-warning">{{ avis.user.prenom }}</h5>
+					<p>{{ avis.createdAt | date('d/m/Y')}}</p>
+					<p class="fst-italic fw-strong text-secondary">{{ avis.message }}</p>
+				</div>
+				{% if is_granted('ROLE_ADMIN') %}
+					{{ include('avis/_delete_form.html.twig') }}
+				{% endif %}
+			{% endfor %}
+
+		{% endif %}
+
 	</div>
 {% endblock %}

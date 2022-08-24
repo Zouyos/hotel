@@ -12,6 +12,7 @@
 				<th>Id</th>
 				<th>Titre</th>
 				<th>Description Courte</th>
+				<th>Photo</th>
 				<th>Prix</th>
 				<th>CreatedAt</th>
 				<th>Actions</th>
@@ -23,6 +24,11 @@
 					<td>{{ chambre.id }}</td>
 					<td>{{ chambre.Titre }}</td>
 					<td>{{ chambre.descriptionCourte }}</td>
+					{% if chambre.photo %}
+						<td><img src="{{ chambre.photo }}" alt="Chambre" class="img200"></td>
+					{% else %}
+						<td></td>
+					{% endif %}
 					<td>{{ chambre.prix }}</td>
 					<td>{{ chambre.createdAt ? chambre.createdAt|date('d/m/Y H:i:s') : '' }}</td>
 					<td>
@@ -39,5 +45,5 @@
 	</table>
 
 	<a href="{{ path('app_chambre_new') }}" class="btn btn-success my-1">Nouvelle chambre</a>
-  <a href="{{ path('app_admin') }}" class="btn btn-outline-secondary my-1">Retour au dashboard</a>
+	<a href="{{ path('app_admin') }}" class="btn btn-outline-secondary my-1">Retour au dashboard</a>
 {% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{parent()}} | Showroom
+{% endblock %}
+
+{% block h1 %}{{parent()}} | Chambres
+{% endblock %}
+
+{% block body %}
+
+<div class="container d-flex my-4 justify-content-center">
+	{% for chambre in chambres %}
+		<div class="card mx-2" style="width: 36rem;">
+			{% if chambre.photo %}
+				<img src="{{chambre.photo}}" class="card-img-top w-100" alt="Chambre">
+			{% else %}
+				<img src="{{ asset('images/default.jpg') }}" class="card-img-top" alt="Chambre">
+			{% endif %}
+			<div class="card-body">
+				<h3 class="card-title">{{ chambre.titre }}</h3>
+				<p class="card-title">{{ chambre.descriptionCourte }}</p>
+				<h5 class="card-text">
+					{{ chambre.prix }}
+					€
+				</h5>
+				<a href="{{path('chambre', {"id" : chambre.id})}}" class="btn btn-primary mt-2">En savoir plus</a>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+{% endblock %}

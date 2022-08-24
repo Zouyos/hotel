@@ -1,50 +1,103 @@
 <nav class="navbar navbar-expand-lg bg-dark">
 	<div class="container-fluid">
-		<a class="navbar-brand my-2 mx-3" href="{{path('app_home')}}"><img src="{{asset('images/logo.png')}}" alt="Logo" class="img200"></a>
+		<img src="{{asset('images/logo.png')}}" alt="Logo" class="img200 mx-4 my-2">
 		<a class="navbar-brand text-light display-1 mx-4" href="{{path('app_home')}}">HB Hôtels</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-lg-0">
-
-				{% if app.user %}
-
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							{{app.user.prenom}}
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a class="dropdown-item" href="{{path('app_profile')}}">Profil</a>
-							</li>
-
-							{% if is_granted('ROLE_ADMIN') %}
-								<li>
-									<a class="dropdown-item" href="{{path('app_admin')}}">Dashboard</a>
-								</li>
-							{% endif %}
-
-							<li><hr class="dropdown-divider"></li>
-							<li>
-								<a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a>
-							</li>
-						</ul>
-					</li>
-
-				{% else %}
-
-					<li class="nav-item">
-						<a class="nav-link active text-light" aria-current="page" href="{{path('app_register')}}">Inscription</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-light" href="{{path('app_login')}}">Connexion</a>
-					</li>
-
-				{% endif %}
 				<li class="nav-item">
-					<a class="nav-link active text-light" aria-current="page" href="{{path('app_avis_index')}}">Livre d'Or</a>
+					<a class="nav-link text-light" aria-current="page" href="{{path('app_home')}}">Accueil</a>
 				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Chambres
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="dropdown-item" href="#">Classiques</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Confort</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Suites</a>
+						</li>
+						<li><hr class="dropdown-divider"></li>
+						<li>
+							<a class="dropdown-item" href="{{path('app_showroom')}}">Toutes les chambres</a>
+						</li>
+					</ul>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link text-light" aria-current="page" href="#">Le Restaurant</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-light" aria-current="page" href="#">Le Spa</a>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						L'Hôtel
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="dropdown-item" href="#">Qui sommes-nous ?</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Accès</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Contact</a>
+						</li>
+					</ul>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link text-light" aria-current="page" href="{{path('app_avis_index')}}">Livre d'Or</a>
+				</li>
+
+				<ul class="navbar-nav ms-5">
+
+					{% if app.user %}
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								{{app.user.prenom}}
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="{{path('app_profile')}}">Profil</a>
+								</li>
+
+								{% if is_granted('ROLE_ADMIN') %}
+									<li>
+										<a class="dropdown-item" href="{{path('app_admin')}}">Dashboard</a>
+									</li>
+								{% endif %}
+
+								<li><hr class="dropdown-divider"></li>
+								<li>
+									<a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a>
+								</li>
+							</ul>
+						</li>
+
+					{% else %}
+
+						<li class="nav-item">
+							<a class="nav-link text-light" aria-current="page" href="{{path('app_register')}}">Inscription</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-light" href="{{path('app_login')}}">Connexion</a>
+						</li>
+
+					{% endif %}
+
+				</ul>
+
 			</ul>
 		</div>
 	</div>
