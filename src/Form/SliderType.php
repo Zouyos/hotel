@@ -2,31 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Avis;
+use App\Entity\Slider;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AvisType extends AbstractType
+class SliderType extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options): void
   {
     $builder
-      ->add('message', TextareaType::class, [
+      ->add('photo', UrlType::class, [
         'required' => false,
-        'label' => 'Laisser un avis :',
-        'attr' => [
-          'placeholder' => 'Votre message...',
-          'rows' => 6
-        ]
-      ]);
+      ])
+      ->add('ordre');
   }
 
   public function configureOptions(OptionsResolver $resolver): void
   {
     $resolver->setDefaults([
-      'data_class' => Avis::class,
+      'data_class' => Slider::class,
     ]);
   }
 }

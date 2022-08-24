@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{parent()}}
+	| Edition Commande
+{% endblock %}
+
+{% block h1 %}
+	Édition Commande
+{% endblock %}
+
+{% block body %}
+  {{ include('profile/commande/_form.html.twig') }}
+	<a href="{{path('app_profile')}}" class="btn btn-outline-secondary my-1">Retour au profil</a>
+{% endblock %}

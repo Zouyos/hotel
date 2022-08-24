@@ -22,7 +22,7 @@
 			{% for chambre in chambres %}
 				<tr>
 					<td>{{ chambre.id }}</td>
-					<td>{{ chambre.Titre }}</td>
+					<td>{{ chambre.titre }}</td>
 					<td>{{ chambre.descriptionCourte }}</td>
 					{% if chambre.photo %}
 						<td><img src="{{ chambre.photo }}" alt="Chambre" class="img200"></td>

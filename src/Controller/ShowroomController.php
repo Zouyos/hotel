@@ -42,6 +42,13 @@ class ShowroomController extends AbstractController
       $diff = $start->diff($end);
       $days = $diff->days;
 
+      $startHour = $start->format('H');
+      $endHour = $end->format('H');
+
+      if ($startHour < $endHour) {
+        $days = $days + 1;
+      }
+
       $result = round($days * $chambre->getPrix(), 2);
       $commande->setPrix($result);
 

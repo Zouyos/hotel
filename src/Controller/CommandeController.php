@@ -39,14 +39,21 @@ class CommandeController extends AbstractController
       $diff = $start->diff($end);
       $days = $diff->days;
 
+      // ======
+      $startHour = $start->format('H');
+      $endHour = $end->format('H');
+
+      if ($startHour < $endHour) {
+        $days = $days + 1;
+      }
+      // ======
+
       $resultat = round($days * $commande->getChambre()->getPrix(), 2);
 
       $commande->setPrix($resultat);
 
       $commande->setCreatedAt(new \DateTimeImmutable('now'));
       $commandeRepository->add($commande, true);
-
-      $this->addFlash('success', 'La réservation a bien été créée');
 
       return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -72,6 +79,24 @@ class CommandeController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+
+      $start = $commande->getStartAt();
+      $end = $commande->getEndAt();
+
+      $diff = $start->diff($end);
+      $days = $diff->days;
+
+      $startHour = $start->format('H');
+      $endHour = $end->format('H');
+
+      if ($startHour < $endHour) {
+        $days = $days + 1;
+      }
+
+      $resultat = round($days * $commande->getChambre()->getPrix(), 2);
+
+      $commande->setPrix($resultat);
+
       $commandeRepository->add($commande, true);
 
       return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
