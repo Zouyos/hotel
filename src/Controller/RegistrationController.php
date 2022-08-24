@@ -25,7 +25,7 @@ class RegistrationController extends AbstractController
       'prenom' => true,
       'sexe' => true,
       'agree' => true,
-      'roles' => true,
+      // 'roles' => true,
     ]);
     $form->handleRequest($request);
 
