@@ -48,7 +48,7 @@ class SliderController extends AbstractController
     ]);
   }
 
-  #[Route('/{id}/edit', name: 'app_slider_edit', methods: ['GET', 'POST'])]
+  #[Route('/edit/{id}', name: 'app_slider_edit', methods: ['GET', 'POST'])]
   public function edit(Request $request, Slider $slider, SliderRepository $sliderRepository): Response
   {
     $form = $this->createForm(SliderType::class, $slider);

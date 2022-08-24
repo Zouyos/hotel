@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\Chambre;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,6 +31,13 @@ class ChambreType extends AbstractType
       ])
       ->add('prix', MoneyType::class, [
         'required' => false,
+      ])
+      ->add('categorie', EntityType::class, [
+        'required' => false,
+        'class' => Categorie::class,
+        'choice_label' => 'nom',
+        'expanded' => true,
+        'placeholder' => false,
       ]);
   }
 

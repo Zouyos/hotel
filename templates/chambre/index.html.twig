@@ -10,6 +10,7 @@
 		<thead>
 			<tr>
 				<th>Id</th>
+        <th>Catégorie</th>
 				<th>Titre</th>
 				<th>Description Courte</th>
 				<th>Photo</th>
@@ -22,6 +23,7 @@
 			{% for chambre in chambres %}
 				<tr>
 					<td>{{ chambre.id }}</td>
+          <td class="fst-italic text-secondary">{{ chambre.categorie.nom }}</td>
 					<td>{{ chambre.titre }}</td>
 					<td>{{ chambre.descriptionCourte }}</td>
 					{% if chambre.photo %}
@@ -29,7 +31,7 @@
 					{% else %}
 						<td></td>
 					{% endif %}
-					<td>{{ chambre.prix }}</td>
+					<td>{{ chambre.prix }} €</td>
 					<td>{{ chambre.createdAt ? chambre.createdAt|date('d/m/Y H:i:s') : '' }}</td>
 					<td>
 						<a href="{{ path('app_chambre_show', {'id': chambre.id}) }}">show</a>

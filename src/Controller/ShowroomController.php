@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Chambre;
 use App\Entity\Commande;
 use App\Form\CommandeType;
+use App\Repository\CategorieRepository;
 use App\Repository\ChambreRepository;
 use App\Repository\CommandeRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,6 +20,46 @@ class ShowroomController extends AbstractController
   {
     $chambres = $chambreRepository->findAll();
     return $this->render('showroom/index.html.twig', [
+      'chambres' => $chambres
+    ]);
+  }
+
+  #[Route('/showroom/classique', name: 'app_showroom_classique', methods: ['GET', 'POST'])]
+  public function indexClassique(ChambreRepository $chambreRepository, CategorieRepository $categorieRepository): Response
+  {
+    $confort = $categorieRepository->find(1);
+    $chambres = $chambreRepository->findBy([
+      "categorie" => $confort
+    ]);
+
+    // dd($chambres);
+    return $this->render('showroom/classique.html.twig', [
+      'chambres' => $chambres
+    ]);
+  }
+
+  #[Route('/showroom/confort', name: 'app_showroom_confort', methods: ['GET', 'POST'])]
+  public function indexConfort(ChambreRepository $chambreRepository, CategorieRepository $categorieRepository): Response
+  {
+    
+    $confort = $categorieRepository->find(2);
+    $chambres = $chambreRepository->findBy([
+      "categorie" => $confort
+    ]);
+
+    return $this->render('showroom/confort.html.twig', [
+      'chambres' => $chambres
+    ]);
+  }
+
+  #[Route('/showroom/suite', name: 'app_showroom_suite', methods: ['GET', 'POST'])]
+  public function indexSuite(ChambreRepository $chambreRepository, CategorieRepository $categorieRepository): Response
+  {
+    $confort = $categorieRepository->find(3);
+    $chambres = $chambreRepository->findBy([
+      "categorie" => $confort
+    ]);
+    return $this->render('showroom/suite.html.twig', [
       'chambres' => $chambres
     ]);
   }

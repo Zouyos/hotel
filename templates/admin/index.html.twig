@@ -11,9 +11,10 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container d-flex flex-wrap justify-content-around">
-		<a href="{{path('app_user_index')}}" class="btn btn-lg btn-secondary">Gestion des membres</a>
+	<div class="container d-flex flex-wrap justify-content-around my-5">
     <a href="{{path('app_chambre_index')}}" class="btn btn-lg btn-primary">Gestion des chambres</a>
+    <a href="{{path('app_categorie_index')}}" class="btn btn-lg btn-secondary">Gestion des catégories</a>
+    <a href="{{path('app_user_index')}}" class="btn btn-lg btn-warning">Gestion des membres</a>
     <a href="{{path('app_commande_index')}}" class="btn btn-lg btn-success">Gestion des commandes</a>
 	</div>
 

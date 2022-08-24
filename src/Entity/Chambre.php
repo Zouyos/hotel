@@ -40,6 +40,10 @@ class Chambre
   #[ORM\OneToMany(mappedBy: 'chambre', targetEntity: Commande::class)]
   private Collection $commandes;
 
+  #[ORM\ManyToOne(inversedBy: 'chambres')]
+  // #[Assert\NotBlank]
+  private ?Categorie $categorie = null;
+
   public function __construct()
   {
     $this->commandes = new ArrayCollection();
@@ -148,6 +152,18 @@ class Chambre
               $commande->setChambre(null);
           }
       }
+
+      return $this;
+  }
+
+  public function getCategorie(): ?Categorie
+  {
+      return $this->categorie;
+  }
+
+  public function setCategorie(?Categorie $categorie): self
+  {
+      $this->categorie = $categorie;
 
       return $this;
   }
