@@ -29,6 +29,7 @@ class SliderController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+      $slider->setCreatedAt(new \DateTimeImmutable('now'));
       $sliderRepository->add($slider, true);
 
       return $this->redirectToRoute('app_slider_index', [], Response::HTTP_SEE_OTHER);

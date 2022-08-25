@@ -8,58 +8,118 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: SliderRepository::class)]
 class Slider
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+  #[ORM\Id]
+  #[ORM\GeneratedValue]
+  #[ORM\Column]
+  private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $photo = null;
+  #[ORM\Column(length: 255, nullable: true)]
+  private ?string $photo = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $ordre = null;
+  #[ORM\Column(nullable: true)]
+  private ?int $ordre = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $createdAt = null;
+  #[ORM\Column(nullable: true)]
+  private ?\DateTimeImmutable $createdAt = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+  #[ORM\Column(length: 255, nullable: true)]
+  private ?string $title = null;
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
+  #[ORM\Column(length: 255, nullable: true)]
+  private ?string $alt = null;
 
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
+  #[ORM\Column(length: 255, nullable: true)]
+  private ?string $caption = null;
 
-        return $this;
-    }
+  #[ORM\Column(length: 255, nullable: true)]
+  private ?string $description = null;
 
-    public function getOrdre(): ?int
-    {
-        return $this->ordre;
-    }
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
 
-    public function setOrdre(?int $ordre): self
-    {
-        $this->ordre = $ordre;
+  public function getPhoto(): ?string
+  {
+    return $this->photo;
+  }
 
-        return $this;
-    }
+  public function setPhoto(?string $photo): self
+  {
+    $this->photo = $photo;
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+    return $this;
+  }
 
-    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
+  public function getOrdre(): ?int
+  {
+    return $this->ordre;
+  }
 
-        return $this;
-    }
+  public function setOrdre(?int $ordre): self
+  {
+    $this->ordre = $ordre;
+
+    return $this;
+  }
+
+  public function getCreatedAt(): ?\DateTimeImmutable
+  {
+    return $this->createdAt;
+  }
+
+  public function setCreatedAt(?\DateTimeImmutable $createdAt): self
+  {
+    $this->createdAt = $createdAt;
+
+    return $this;
+  }
+
+  public function getTitle(): ?string
+  {
+      return $this->title;
+  }
+
+  public function setTitle(string $title): self
+  {
+      $this->title = $title;
+
+      return $this;
+  }
+
+  public function getAlt(): ?string
+  {
+      return $this->alt;
+  }
+
+  public function setAlt(?string $alt): self
+  {
+      $this->alt = $alt;
+
+      return $this;
+  }
+
+  public function getCaption(): ?string
+  {
+      return $this->caption;
+  }
+
+  public function setCaption(?string $caption): self
+  {
+      $this->caption = $caption;
+
+      return $this;
+  }
+
+  public function getDescription(): ?string
+  {
+      return $this->description;
+  }
+
+  public function setDescription(?string $description): self
+  {
+      $this->description = $description;
+
+      return $this;
+  }
 }

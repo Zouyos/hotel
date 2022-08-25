@@ -6,55 +6,75 @@
 {% endblock %}
 
 {% block h1 %}
-	{{parent()}}
-	| Accueil
+	<div class="col-md-4 border border-dark rounded-pill p-3 mx-auto">
+		{{parent()}}
+		| Accueil
+	</div>
 {% endblock %}
 
 {% block body %}
 
 	{% include "inc/_flash.html.twig" %}
-	<p class="text-center fs-5 fst-italic">Situé dans le 1er arrondissement de Paris, à 500 mètres de la célèbre tour Eiffel, l'Hôtel House dispose d'un restaurant et d'une salle de sport.</p>
-  <p class="text-center fs-5 fst-italic">Entièrement non-fumeurs, cet hôtel propose de charmantes chambres climatisées dotées d'une salle de bains privative bien entretenue et d'une télévision par satellite à écran plat. Les chambres sont spacieuses et le petit-déjeuner est systèmatiquement inclu.</p>
-  <p class="text-center fs-5 fst-italic">Les autres installations de l'hôtel comprennent une salle de réunion pouvant accueillir jusqu'à 80 personnes.</p>
-  <p class="text-center fs-5 fst-italic">Grâce aux nombreux transports en commun disponibles dans les environs immédiats, vous pourrez facilement visiter les célèbres quartiers de Paris comme les Champs-Élysées, l'Arc de Triomphe et le musée du Louvre. De nombreux magasins, restaurants et cinémas sont installés aux alentours. 
-  <p class="text-center fs-5 fst-italic">À proximité, vous trouverez également de nombreux points d'intérêts.</p>
-  <p class="text-center fs-5 fst-italic">C'est l'un des quartiers préféré des voyageurs visitant Paris.</p>
+
+	<div>
+		<p class="text-center fs-6 fst-italic">Situé dans le 1er arrondissement de Paris, à 500 mètres de la célèbre tour Eiffel, l'Hôtel House dispose d'un restaurant et d'une salle de sport.</p>
+		<p class="text-center fs-6 fst-italic">Entièrement non-fumeurs, cet hôtel propose de charmantes chambres climatisées dotées d'une salle de bains privative bien entretenue et d'une télévision par satellite à écran plat. Les chambres sont spacieuses et le petit-déjeuner est systèmatiquement inclu. Les autres installations de l'hôtel comprennent une salle de réunion pouvant accueillir jusqu'à 80 personnes.</p>
+		<p class="text-center fs-6 fst-italic">Grâce aux nombreux transports en commun disponibles dans les environs immédiats, vous pourrez facilement visiter les célèbres quartiers de Paris comme les Champs-Élysées, l'Arc de Triomphe et le musée du Louvre. De nombreux magasins, restaurants et cinémas sont installés aux alentours. À proximité, vous trouverez également de nombreux points d'intérêts. C'est l'un des quartiers préféré des voyageurs visitant Paris.</p>
+	</div>
+
+	{# <div class="ratio ratio-16-9"> #}
 	<div id="carouselExampleCaptions" class="carousel slide container" data-bs-ride="false">
+
 		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+			{% for k,image in images %}
+
+				{% if k == 0 %}
+					{% set class = 'active' %}
+					{% set ariacurrent = 'true' %}
+				{% else %}
+					{% set v = "" %}
+				{% endif %}
+
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ k }}" class="{{class}}" class aria-current="{{ariacurrent}}" aria-label="Slide {{ k + 1 }}"></button>
+
+			{% endfor %}
+
 		</div>
+
 		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="{{asset('images/carousel/suite.jpg')}}" class="d-block w-100" alt="Suite hotel">
-				<div class="carousel-caption d-none d-md-block">
-					<h5>Découvrez des suites incroyables</h5>
-					<p>Voici un exemple de suite deluxe située au penthouse.</p>
+
+			{% for k,image in images %}
+
+				{% if k == 0 %}
+					{% set first = "active" %}
+				{% else %}
+					{% set first = "" %}
+				{% endif %}
+
+				<div class="carousel-item {{first}}">
+					<img src="{{ image.photo }}" class="d-block w-100" alt="{{image.alt}}" title="{{image.title}}">
+					<div class="carousel-caption d-none d-md-block">
+						<h5>{{ image.caption }}</h5>
+						<p>{{ image.description }}</p>
+					</div>
 				</div>
-			</div>
-			<div class="carousel-item">
-				<img src="{{asset('images/carousel/resto.jpg')}}" class="d-block w-100" alt="Restaurant">
-				<div class="carousel-caption d-none d-md-block">
-					<h5>Des saveurs d'exception</h5>
-					<p>Notre restaurant est ouvert 24h/24, pour le plaisir de vos papilles !</p>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img src="{{asset('images/carousel/spa.jpg')}}" class="d-block w-100" alt="Spa">
-				<div class="carousel-caption d-none d-md-block">
-					<h5>Le Spa vous attend pour rester zen</h5>
-					<p>Découvrez nos differents services bien-être au sein du Spa.</p>
-				</div>
-			</div>
+			{% endfor %}
+
 		</div>
+
 		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Précedent</span>
+			<span class="visually-hidden">Previous</span>
 		</button>
+
 		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
 			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Suivant</span>
+			<span class="visually-hidden">Next</span>
 		</button>
+
 	</div>
+	{# </div> #}
+
+
 {% endblock %}

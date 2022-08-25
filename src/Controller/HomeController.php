@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\SliderRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,9 +10,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
   #[Route('/', name: 'app_home', methods: ['GET'])]
-  public function index(): Response
+  public function index(SliderRepository $sliderRepository): Response
   {
-    return $this->render('home/index.html.twig');
+    $images = $sliderRepository->findAll();
+    //dd($images);
+    return $this->render('home/index.html.twig', [
+      'images' => $images
+    ]);
   }
 
   #[Route('/restaurant', name: 'app_resto', methods: ['GET'])]
