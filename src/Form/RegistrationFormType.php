@@ -98,9 +98,10 @@ class RegistrationFormType extends AbstractType
         ->add('sexe', ChoiceType::class, [
           'required' => false,
           'placeholder' => false,
+          'label' => 'Civilité',
           'choices' => [
-            'Masculin' => 'M',
-            'Féminin' => 'F'
+            'Monsieur' => 'M.',
+            'Madame' => 'Mme.'
           ],
           "multiple" => false,
           "expanded" => true

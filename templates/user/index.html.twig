@@ -15,9 +15,9 @@
 				<th>Id</th>
 				<th>Email</th>
 				<th>Pseudal</th>
+        <th>Civilité</th>
         <th>Nom</th>
         <th>Prénom</th>
-        <th>Genre</th>
 				<th>Roles</th>
         <th>Date d'inscription</th>
 				<th>Actions</th>
@@ -29,9 +29,9 @@
 					<td>{{ user.id }}</td>
 					<td>{{ user.email }}</td>
 					<td>{{ user.pseudo }}</td>
+          <td>{{ user.sexe }}</td>
           <td>{{ user.nom }}</td>
 					<td>{{ user.prenom }}</td>
-          <td>{{ user.sexe }}</td>
 					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
           <td>{{ user.createdAt ? user.createdAt|date('d/m/Y H:i:s') : '' }}</td>
 					<td>

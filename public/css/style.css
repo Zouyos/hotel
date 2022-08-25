@@ -1,3 +1,26 @@
 .img200 {
   width: 200px; 
 }
+
+.icone {
+  width: 60px;
+  height: auto;
+}
+
+footer {
+background-color: #CCDBE7;
+}
+
+footer a {
+  color: #46769C;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+footer a:hover {
+  color: #000;
+}
+
+.bleunuit {
+  color: #19354B;
+}
