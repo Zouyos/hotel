@@ -27,7 +27,7 @@ class ShowroomController extends AbstractController
   #[Route('/showroom/classique', name: 'app_showroom_classique', methods: ['GET', 'POST'])]
   public function indexClassique(ChambreRepository $chambreRepository, CategorieRepository $categorieRepository): Response
   {
-    $categorie = $categorieRepository->find(21);
+    $categorie = $categorieRepository->find(1);
     $chambres = $chambreRepository->findBy([
       "categorie" => $categorie
     ]);
@@ -54,7 +54,7 @@ class ShowroomController extends AbstractController
   #[Route('/showroom/suite', name: 'app_showroom_suite', methods: ['GET', 'POST'])]
   public function indexSuite(ChambreRepository $chambreRepository, CategorieRepository $categorieRepository): Response
   {
-    $categorie = $categorieRepository->find(1);
+    $categorie = $categorieRepository->find(21);
     $chambres = $chambreRepository->findBy([
       "categorie" => $categorie
     ]);
