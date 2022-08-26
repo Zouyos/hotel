@@ -52,13 +52,20 @@
 					{% set first = "" %}
 				{% endif %}
 
-				<div class="carousel-item {{first}}">
+				{# {% if image.status %}
+					{% set disable = "" %}
+				{% else %}
+					{% set disable = "display:none" %}
+				{% endif %} #}
+
+				<div class="carousel-item {{first}}" {# style="{{disable}}" #}>
 					<img src="{{ image.photo }}" class="d-block w-100" alt="{{image.alt}}" title="{{image.title}}">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>{{ image.caption }}</h5>
 						<p>{{ image.description }}</p>
 					</div>
 				</div>
+
 			{% endfor %}
 
 		</div>

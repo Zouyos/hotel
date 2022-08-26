@@ -4,10 +4,11 @@ namespace App\Form;
 
 use App\Entity\Slider;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SliderType extends AbstractType
 {
@@ -29,6 +30,13 @@ class SliderType extends AbstractType
       ])
       ->add('description', TextType::class, [
         'required' => false,
+      ])
+      ->add('status', ChoiceType::class, [
+        'required' => false,
+        'choices' => [
+          'Activer' => 'Actif'
+        ],
+        "expanded" => true
       ]);
   }
 

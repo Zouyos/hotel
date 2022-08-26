@@ -10,9 +10,10 @@
 		<thead>
 			<tr>
 				<th>Id</th>
-        <th>Ordre</th>
+				<th>Ordre</th>
+				<th>Statut</th>
 				<th>Photo</th>
-        <th>Titre</th>
+				<th>Titre</th>
 				<th>Date de création</th>
 				<th>Actions</th>
 			</tr>
@@ -21,10 +22,15 @@
 			{% for slider in sliders %}
 				<tr>
 					<td>{{ slider.id }}</td>
-          <td>{{ slider.ordre }}</td>
+					<td>{{ slider.ordre }}</td>
+					{% if slider.status %}
+						<td>{{ slider.status }}</td>
+					{% else %}
+						<td>Inactif</td>
+					{% endif %}
 					<td><img src="{{ slider.photo }}" class="img200"></td>
-          <td>{{ slider.title }}</td>
-					<td>{{ slider.createdAt ? slider.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ slider.title }}</td>
+					<td>{{ slider.createdAt ? slider.createdAt|date('d-m-Y H:i:s') : '' }}</td>
 					<td>
 						<a href="{{ path('app_slider_show', {'id': slider.id}) }}">show</a>
 						<a href="{{ path('app_slider_edit', {'id': slider.id}) }}">edit</a>

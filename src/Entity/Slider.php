@@ -34,6 +34,9 @@ class Slider
   #[ORM\Column(length: 255, nullable: true)]
   private ?string $description = null;
 
+  #[ORM\Column(length: 255, nullable: true)]
+  private ?string $status = null;
+
   public function getId(): ?int
   {
     return $this->id;
@@ -77,49 +80,61 @@ class Slider
 
   public function getTitle(): ?string
   {
-      return $this->title;
+    return $this->title;
   }
 
   public function setTitle(string $title): self
   {
-      $this->title = $title;
+    $this->title = $title;
 
-      return $this;
+    return $this;
   }
 
   public function getAlt(): ?string
   {
-      return $this->alt;
+    return $this->alt;
   }
 
   public function setAlt(?string $alt): self
   {
-      $this->alt = $alt;
+    $this->alt = $alt;
 
-      return $this;
+    return $this;
   }
 
   public function getCaption(): ?string
   {
-      return $this->caption;
+    return $this->caption;
   }
 
   public function setCaption(?string $caption): self
   {
-      $this->caption = $caption;
+    $this->caption = $caption;
 
-      return $this;
+    return $this;
   }
 
   public function getDescription(): ?string
   {
-      return $this->description;
+    return $this->description;
   }
 
   public function setDescription(?string $description): self
   {
-      $this->description = $description;
+    $this->description = $description;
 
-      return $this;
+    return $this;
+  }
+
+  public function getStatus(): ?string
+  {
+    return $this->status;
+  }
+
+  public function setStatus(?string $status): self
+  {
+    $this->status = $status;
+
+    return $this;
   }
 }
