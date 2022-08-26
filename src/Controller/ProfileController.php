@@ -56,15 +56,14 @@ class ProfileController extends AbstractController
   {
     $user = $this->getUser();
 
-   // dd($user);
+    // dd($user);
     $form = $this->createForm(RegistrationFormType::class, $user, [
       'updatePassword' => true,
     ]);
 
     $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) 
-    {
+    if ($form->isSubmitted() && $form->isValid()) {
 
       $currentPassword = $form->get('currentPassword')->getData();
       $newPassword = $form->get('newPassword')->getData();
@@ -72,37 +71,26 @@ class ProfileController extends AbstractController
 
       $access = true;
 
-      if (!$currentPassword) 
-      {
+      if (!$currentPassword) {
         $access = false;
         $form->get('currentPassword')->addError(new FormError('Saisir votre mot de passe actuel.'));
-      } 
-      else
-      {
+      } else {
         if (!$passwordHasher->isPasswordValid($user, $currentPassword)) // boolean
         {
           $access = false;
           $form->get('currentPassword')->addError(new FormError('Le mot de passe est incorrect.'));
-        } 
-        else
-        {
-          if ($newPassword != $confirmPassword) 
-          {
+        } else {
+          if ($newPassword != $confirmPassword) {
             $access = false;
             $form->get('newPassword')->addError(new FormError('Les mots de passe ne corresspondent pas.'));
             $form->get('confirmPassword')->addError(new FormError('Les mots de passe ne corresspondent pas.'));
-          } 
-          else
-          {
+          } else {
             if (!$newPassword) // si confirm est vide ça va empêcher d'envoyer un mdp vide en bdd
             {
               $access = false;
               $form->get('newPassword')->addError(new FormError('Saisir un nouveau mot de passe.'));
-            } 
-            else
-            {
-              if ($newPassword == $currentPassword) 
-              {
+            } else {
+              if ($newPassword == $currentPassword) {
                 $access = false;
                 $form->get('newPassword')->addError(new FormError('Saisir un mot de passe différent de votre mot de passe actuel.'));
               }
@@ -111,8 +99,7 @@ class ProfileController extends AbstractController
         }
       }
 
-      if ($access) 
-      {
+      if ($access) {
         $user->setPassword(
           $passwordHasher->hashPassword($user, $newPassword)
         );
@@ -122,7 +109,6 @@ class ProfileController extends AbstractController
 
         return $this->redirectToRoute('app_profile', [], Response::HTTP_SEE_OTHER);
       }
-
     }
 
     return $this->render('profile/password/edit.html.twig', [

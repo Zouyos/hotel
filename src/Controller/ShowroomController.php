@@ -27,14 +27,13 @@ class ShowroomController extends AbstractController
   #[Route('/showroom/classique', name: 'app_showroom_classique', methods: ['GET', 'POST'])]
   public function indexClassique(ChambreRepository $chambreRepository, CategorieRepository $categorieRepository): Response
   {
-    $confort = $categorieRepository->find(1);
+    $categorie = $categorieRepository->find(1);
     $chambres = $chambreRepository->findBy([
-      "categorie" => $confort
+      "categorie" => $categorie
     ]);
 
-    // dd($chambres);
     return $this->render('showroom/classique.html.twig', [
-      'chambres' => $chambres
+      'chambres' => $categorie
     ]);
   }
 
@@ -42,9 +41,9 @@ class ShowroomController extends AbstractController
   public function indexConfort(ChambreRepository $chambreRepository, CategorieRepository $categorieRepository): Response
   {
     
-    $confort = $categorieRepository->find(2);
+    $categorie = $categorieRepository->find(11);
     $chambres = $chambreRepository->findBy([
-      "categorie" => $confort
+      "categorie" => $categorie
     ]);
 
     return $this->render('showroom/confort.html.twig', [
@@ -55,9 +54,9 @@ class ShowroomController extends AbstractController
   #[Route('/showroom/suite', name: 'app_showroom_suite', methods: ['GET', 'POST'])]
   public function indexSuite(ChambreRepository $chambreRepository, CategorieRepository $categorieRepository): Response
   {
-    $confort = $categorieRepository->find(3);
+    $categorie = $categorieRepository->find(21);
     $chambres = $chambreRepository->findBy([
-      "categorie" => $confort
+      "categorie" => $categorie
     ]);
     return $this->render('showroom/suite.html.twig', [
       'chambres' => $chambres
@@ -69,7 +68,7 @@ class ShowroomController extends AbstractController
   {
     $commande = new Commande;
     $form = $this->createForm(CommandeType::class, $commande);
-    $form->handleRequest($request); // aucune idée de ce que ça veut dire, se renseigner
+    $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
 
