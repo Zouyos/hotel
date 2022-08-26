@@ -30,13 +30,13 @@
 			{% for k,image in images %}
 
 				{% if k == 0 %}
-					{% set class = 'active' %}
-					{% set ariacurrent = 'true' %}
+					{% set active = 'active' %}
+					{% set true_ = 'true' %}
 				{% else %}
-					{% set v = "" %}
+					{% set v = '' %}
 				{% endif %}
 
-				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ k }}" class="{{class}}" class aria-current="{{ariacurrent}}" aria-label="Slide {{ k + 1 }}"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ k }}" class="{{active}}" class aria-current="{{true_}}" aria-label="Slide {{ k + 1 }}"></button>
 
 			{% endfor %}
 

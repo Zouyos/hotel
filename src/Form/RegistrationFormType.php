@@ -100,11 +100,51 @@ class RegistrationFormType extends AbstractType
           'placeholder' => false,
           'label' => 'Civilité',
           'choices' => [
-            'Monsieur' => 'M.',
-            'Madame' => 'Mme.'
+            'Madame' => 'Mme.',
+            'Monsieur' => 'M.'
           ],
           "multiple" => false,
           "expanded" => true
+        ]);
+    }
+
+    if ($options['updatePassword']) {
+      $builder
+        ->add('currentPassword', PasswordType::class, [
+          'mapped' => false,
+          'required' => false,
+          'attr' => ['autocomplete' => 'new-password'],
+          'constraints' => [
+            new Length([
+              'min' => 6,
+              'minMessage' => 'Your password should be at least {{ limit }} characters',
+              'max' => 4096,
+            ]),
+          ],
+        ])
+        ->add('newPassword', PasswordType::class, [
+          'mapped' => false,
+          'required' => false,
+          'attr' => ['autocomplete' => 'new-password'],
+          'constraints' => [
+            new Length([
+              'min' => 6,
+              'minMessage' => 'Your password should be at least {{ limit }} characters',
+              'max' => 4096,
+            ]),
+          ],
+        ])
+        ->add('confirmPassword', PasswordType::class, [
+          'mapped' => false,
+          'required' => false,
+          'attr' => ['autocomplete' => 'new-password'],
+          'constraints' => [
+            new Length([
+              'min' => 6,
+              'minMessage' => 'Your password should be at least {{ limit }} characters',
+              'max' => 4096,
+            ]),
+          ],
         ]);
     }
   }
@@ -121,6 +161,7 @@ class RegistrationFormType extends AbstractType
       'prenom' => false,
       'roles' => false,
       'sexe' => false,
+      'updatePassword' => false,
     ]);
   }
 }

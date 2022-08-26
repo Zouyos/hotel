@@ -30,10 +30,10 @@
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link text-light" aria-current="page" href="{{path('app_resto')}}">Le Restaurant</a>
+					<a class="nav-link text-light" href="{{path('app_resto')}}">Le Restaurant</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link text-light" aria-current="page" href="{{path('app_spa')}}">Le Spa</a>
+					<a class="nav-link text-light" href="{{path('app_spa')}}">Le Spa</a>
 				</li>
 
 				<li class="nav-item dropdown">
@@ -54,61 +54,63 @@
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link text-light" aria-current="page" href="{{path('app_avis_index')}}">Livre d'Or</a>
+					<a class="nav-link text-light" href="{{path('app_avis_index')}}">Livre d'Or</a>
 				</li>
 
 				{% if app.user %}
 
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							{{app.user.prenom}}
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a class="dropdown-item" href="{{path('app_profile')}}">Profil</a>
-							</li>
-
-							{% if is_granted('ROLE_ADMIN') %}
+					<ul class="d-flex navbar-nav ms-3">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								{{app.user.prenom}}
+							</a>
+							<ul class="dropdown-menu">
 								<li>
-									<a class="dropdown-item" href="{{path('app_admin')}}">Dashboard</a>
+									<a class="dropdown-item" href="{{path('app_profile')}}">Profil</a>
 								</li>
+
+								{% if is_granted('ROLE_ADMIN') %}
+									<li>
+										<a class="dropdown-item" href="{{path('app_admin')}}">Dashboard</a>
+									</li>
+									<li><hr class="dropdown-divider"></li>
+									<li>
+										<a class="dropdown-item text-secondary" href="{{path('app_slider_index')}}">Gestion Slider</a>
+									</li>
+									<li>
+										<a class="dropdown-item text-secondary" href="{{path('app_chambre_index')}}">Gestion Chambres</a>
+									</li>
+									<li>
+										<a class="dropdown-item text-secondary" href="{{path('app_categorie_index')}}">Gestion Catégories</a>
+									</li>
+									<li>
+										<a class="dropdown-item text-secondary" href="{{path('app_user_index')}}">Gestion Membres</a>
+									</li>
+									<li>
+										<a class="dropdown-item text-secondary" href="{{path('app_commande_index')}}">Gestion Commandes</a>
+									</li>
+								{% endif %}
+
 								<li><hr class="dropdown-divider"></li>
 								<li>
-									<a class="dropdown-item text-secondary" href="{{path('app_slider_index')}}">Gestion Slider</a>
+									<a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a>
 								</li>
-								<li>
-									<a class="dropdown-item text-secondary" href="{{path('app_chambre_index')}}">Gestion Chambres</a>
-								</li>
-								<li>
-									<a class="dropdown-item text-secondary" href="{{path('app_categorie_index')}}">Gestion Catégories</a>
-								</li>
-								<li>
-									<a class="dropdown-item text-secondary" href="{{path('app_user_index')}}">Gestion Membres</a>
-								</li>
-								<li>
-									<a class="dropdown-item text-secondary" href="{{path('app_commande_index')}}">Gestion Commandes</a>
-								</li>
-							{% endif %}
-
-							<li><hr class="dropdown-divider"></li>
-							<li>
-								<a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a>
-							</li>
-						</ul>
-					</li>
-
+							</ul>
+						</li>
+					</ul>
 				{% else %}
 
-					<li class="nav-item">
-						<a class="nav-link text-light" aria-current="page" href="{{path('app_register')}}">Inscription</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-light" href="{{path('app_login')}}">Connexion</a>
-					</li>
+					<ul class="d-flex navbar-nav ms-3">
+						<li class="nav-item">
+							<a class="nav-link text-light mx-1" href="{{path('app_register')}}">Inscription</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-light mx-1" href="{{path('app_login')}}">Connexion</a>
+						</li>
+					</ul>
 
 				{% endif %}
 
-			</ul>
+			</div>
 		</div>
-	</div>
-</nav>
+	</nav>

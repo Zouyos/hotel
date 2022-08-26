@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/profile')]
 class ProfileController extends AbstractController
@@ -31,7 +33,6 @@ class ProfileController extends AbstractController
       'nom' => true,
       'prenom' => true,
       'email' => true,
-      // 'password' => true,
       'pseudo' => true,
       'sexe' => true,
     ]);
@@ -47,6 +48,85 @@ class ProfileController extends AbstractController
     return $this->renderForm('profile/edit.html.twig', [
       'user' => $user,
       'form' => $form
+    ]);
+  }
+
+  #[Route('/password/edit', name: 'app_profile_password_edit', methods: ['GET', 'POST'])]
+  public function editPassword(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
+  {
+    $user = $this->getUser();
+
+   // dd($user);
+    $form = $this->createForm(RegistrationFormType::class, $user, [
+      'updatePassword' => true,
+    ]);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) 
+    {
+
+      $currentPassword = $form->get('currentPassword')->getData();
+      $newPassword = $form->get('newPassword')->getData();
+      $confirmPassword = $form->get('confirmPassword')->getData();
+
+      $access = true;
+
+      if (!$currentPassword) 
+      {
+        $access = false;
+        $form->get('currentPassword')->addError(new FormError('Saisir votre mot de passe actuel.'));
+      } 
+      else
+      {
+        if (!$passwordHasher->isPasswordValid($user, $currentPassword)) // boolean
+        {
+          $access = false;
+          $form->get('currentPassword')->addError(new FormError('Le mot de passe est incorrect.'));
+        } 
+        else
+        {
+          if ($newPassword != $confirmPassword) 
+          {
+            $access = false;
+            $form->get('newPassword')->addError(new FormError('Les mots de passe ne corresspondent pas.'));
+            $form->get('confirmPassword')->addError(new FormError('Les mots de passe ne corresspondent pas.'));
+          } 
+          else
+          {
+            if (!$newPassword) // si confirm est vide ça va empêcher d'envoyer un mdp vide en bdd
+            {
+              $access = false;
+              $form->get('newPassword')->addError(new FormError('Saisir un nouveau mot de passe.'));
+            } 
+            else
+            {
+              if ($newPassword == $currentPassword) 
+              {
+                $access = false;
+                $form->get('newPassword')->addError(new FormError('Saisir un mot de passe différent de votre mot de passe actuel.'));
+              }
+            }
+          }
+        }
+      }
+
+      if ($access) 
+      {
+        $user->setPassword(
+          $passwordHasher->hashPassword($user, $newPassword)
+        );
+
+        $userRepository->add($user, true);
+        $this->addFlash('success', 'Votre mot de passe a bien été modifié');
+
+        return $this->redirectToRoute('app_profile', [], Response::HTTP_SEE_OTHER);
+      }
+
+    }
+
+    return $this->render('profile/password/edit.html.twig', [
+      'form' => $form->createView()
     ]);
   }
 

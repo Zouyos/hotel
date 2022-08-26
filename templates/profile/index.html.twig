@@ -31,7 +31,8 @@
 		<p>Date d'ínscription :
 			{{app.user.createdAt | date('d/m/Y')}}
 		</p>
-		<a href="{{path('app_profile_edit')}}" class="btn btn-warning my-2">Modifier profil</a>
+		<a href="{{path('app_profile_edit')}}" class="btn btn-warning my-2">Modifier le profil</a>
+    <a href="{{path('app_profile_password_edit')}}" class="btn btn-outline-danger my-2">Modifier le mot de passe</a>
 		<hr class="mb-3">
 		<h3 class="mb-3">
 			Commandes :

@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modifier votre mot de passe
+{% endblock %}
+
+{% block h1 %}Modifier votre mot de passe
+{% endblock %}
+
+{% block body %}
+	{{form_start(form)}}
+	{{form_widget(form)}}
+	<input type="submit" value="Modifier" class="btn btn-dark">
+	{{form_start(form)}}
+  <a href="#" class="btn btn-outline-dark">Retour au profil</a>
+{% endblock %}
