@@ -34,7 +34,7 @@ class SliderType extends AbstractType
       ->add('status', ChoiceType::class, [
         'required' => false,
         'choices' => [
-          'Activer' => 'Actif'
+          'Actif' => 'Actif'
         ],
         "expanded" => true
       ]);
