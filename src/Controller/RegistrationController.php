@@ -34,7 +34,7 @@ class RegistrationController extends AbstractController
       $user->setPassword(
         $userPasswordHasher->hashPassword(
           $user,
-          $form->get('plainPassword')->getData()
+          $form->get('password')->getData()
         )
       );
       $user->setCreatedAt(new \DateTimeImmutable('now'));
